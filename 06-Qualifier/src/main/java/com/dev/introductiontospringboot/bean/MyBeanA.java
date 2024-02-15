@@ -1,10 +1,8 @@
 package com.dev.introductiontospringboot.bean;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("myBeanA")
 public class MyBeanA implements SuperInterface {
     public MyBeanA() {
         System.out.println("MyBeanA created");

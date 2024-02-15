@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MyController {
 
-    @Qualifier("myBeanA")
+    @Qualifier("myBeanA") // bean name aware is used to find the bean. if not specified, it will use the first bean it finds.
     @Autowired
     private SuperInterface myBean;
+
     @Value("${USERNAME}")
     private String username;
+
     //    add 0000 for password if not found in application.properties
     @Value("${password:0000}")
     private String password;
-
 
     @GetMapping("/")
     public String get() {
@@ -30,7 +31,6 @@ public class MyController {
         return "Hello endpoint is working!";
     }
 
-    //    expose a new endpoint for /work
     @GetMapping("/work")
     public String work() {
         return "Work endpoint is working!";
