@@ -1,5 +1,6 @@
-package com.dev.introductiontospringboot.bean;
+package com.dev.introductiontospringboot.bean.impl;
 
+import com.dev.introductiontospringboot.bean.SuperInterface;
 import org.springframework.stereotype.Component;
 
 @Component
