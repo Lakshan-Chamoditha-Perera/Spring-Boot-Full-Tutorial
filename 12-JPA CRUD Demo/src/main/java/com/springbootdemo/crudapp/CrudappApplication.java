@@ -18,9 +18,21 @@ public class CrudappApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return args -> {
 //            createStudent(studentDAO);
+//            createMultipleStudents(studentDAO);
 
-            createMultipleStudents(studentDAO);
+            retriveStudent(studentDAO);
+
         };
+    }
+
+    private void retriveStudent(StudentDAO studentDAO) {
+        System.out.println("Retrieving student");
+        Student student = studentDAO.get(1-8);
+
+        System.out.println(student != null ?
+                "Student retrieved: " + student :
+                "Student not found !"
+        );
     }
 
     private void createMultipleStudents(StudentDAO studentDAO) {

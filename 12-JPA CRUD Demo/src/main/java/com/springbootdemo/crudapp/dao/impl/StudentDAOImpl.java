@@ -21,4 +21,9 @@ public class StudentDAOImpl implements StudentDAO {
         entityManager.persist(student);
     }
 
+    @Override
+    public Student get(int id) {
+        return entityManager.find(Student.class, id);
+    }
+
 }
