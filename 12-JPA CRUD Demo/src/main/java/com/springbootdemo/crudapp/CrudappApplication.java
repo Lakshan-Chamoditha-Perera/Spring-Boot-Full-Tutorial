@@ -24,8 +24,17 @@ public class CrudappApplication {
 //            retrieveAllStudents(studentDAO);
 //            retrieveStudentsByFirstName(studentDAO);
 
-            updateStudent(studentDAO);
+//            updateStudent(studentDAO);
+
+            deleteStudent(studentDAO);
         };
+
+    }
+
+    private void deleteStudent(StudentDAO studentDAO) {
+        System.out.println("Deleting student");
+        studentDAO.delete(1);
+        System.out.println("Student deleted");
     }
 
     private void updateStudent(StudentDAO studentDAO) {
@@ -53,12 +62,9 @@ public class CrudappApplication {
 
     private void retrieveStudent(StudentDAO studentDAO) {
         System.out.println("Retrieving student");
-        Student student = studentDAO.get(1-8);
+        Student student = studentDAO.get(1 - 8);
 
-        System.out.println(student != null ?
-                "Student retrieved: " + student :
-                "Student not found !"
-        );
+        System.out.println(student != null ? "Student retrieved: " + student : "Student not found !");
     }
 
     private void createMultipleStudents(StudentDAO studentDAO) {

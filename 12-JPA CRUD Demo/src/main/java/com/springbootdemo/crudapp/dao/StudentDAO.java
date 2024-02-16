@@ -16,4 +16,6 @@ public interface StudentDAO {
 
     @Transactional
     void update(Student student);
+
+    void delete(int id);
 }
