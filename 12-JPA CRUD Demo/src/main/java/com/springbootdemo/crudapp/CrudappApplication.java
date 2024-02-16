@@ -17,19 +17,18 @@ public class CrudappApplication {
     @Bean
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return args -> {
-//            createStudent(studentDAO);
-//            createMultipleStudents(studentDAO);
+            // createStudent(studentDAO);
+            // createMultipleStudents(studentDAO);
 
-//            retrieveStudent(studentDAO);
-//            retrieveAllStudents(studentDAO);
-//            retrieveStudentsByFirstName(studentDAO);
+            // retrieveStudent(studentDAO);
+            // retrieveAllStudents(studentDAO);
+            // retrieveStudentsByFirstName(studentDAO);
 
-//            updateStudent(studentDAO);
+            // updateStudent(studentDAO);
 
-//            deleteStudent(studentDAO);
+            // deleteStudent(studentDAO);
             deleteAll(studentDAO);
         };
-
 
     }
 
