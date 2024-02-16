@@ -4,6 +4,7 @@ import com.springboot.cruddemo.dao.EmployeeDAO;
 import com.springboot.cruddemo.entity.Employee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,16 +20,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findById(int id) {
-        return null;
+        return employeeDAO.findById(id);
     }
 
     @Override
-    public void save(Employee employee) {
-
+    @Transactional
+    public Employee save(Employee employee) {
+        employeeDAO.save(employee);
+        return employee;
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
-
+        employeeDAO.deleteById(id);
     }
 }
