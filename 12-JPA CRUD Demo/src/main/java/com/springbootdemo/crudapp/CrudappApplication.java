@@ -17,8 +17,25 @@ public class CrudappApplication {
     @Bean
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return args -> {
-            createStudent(studentDAO);
+//            createStudent(studentDAO);
+
+            createMultipleStudents(studentDAO);
         };
+    }
+
+    private void createMultipleStudents(StudentDAO studentDAO) {
+        System.out.println("Creating multiple students");
+        Student student1 = new Student("Jane", "Doe", "jane@email.com");
+        Student student2 = new Student("Mary", "Jane", "mary@email.com");
+        Student student3 = new Student("John", "Smith", "smith@email.com");
+
+        System.out.println("Saving multiple students");
+        studentDAO.save(student1);
+        studentDAO.save(student2);
+        studentDAO.save(student3);
+
+        System.out.println("Multiple students saved");
+
     }
 
     private void createStudent(StudentDAO studentDAO) {
