@@ -26,9 +26,17 @@ public class CrudappApplication {
 
 //            updateStudent(studentDAO);
 
-            deleteStudent(studentDAO);
+//            deleteStudent(studentDAO);
+            deleteAll(studentDAO);
         };
 
+
+    }
+
+    private void deleteAll(StudentDAO studentDAO) {
+        System.out.println("Deleting all students");
+        studentDAO.deleteAll();
+        System.out.println("All students deleted");
     }
 
     private void deleteStudent(StudentDAO studentDAO) {
