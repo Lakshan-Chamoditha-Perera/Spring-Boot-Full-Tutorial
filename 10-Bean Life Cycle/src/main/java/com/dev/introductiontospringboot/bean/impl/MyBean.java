@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyBean implements SuperInterface, InitializingBean, DisposableBean {
-
     public MyBean() {
         System.out.println("MyBean: Constructor called");
     }
@@ -17,11 +16,6 @@ public class MyBean implements SuperInterface, InitializingBean, DisposableBean 
     @PostConstruct
     public void init() {
         System.out.println("MyBean: PostConstruct called");
-    }
-
-    @Override
-    public void run() {
-        System.out.println("MyBean is running");
     }
 
     @Override
