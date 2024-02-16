@@ -30,7 +30,7 @@ public class StudentRestController {
 
     @GetMapping("/students/{id}")
     public Student getStudent(@PathVariable int id) {
-        return new Student("John", "Doe");
+        return students.get(id);
     }
 
 }
