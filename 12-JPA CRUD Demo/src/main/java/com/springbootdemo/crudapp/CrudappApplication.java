@@ -20,12 +20,18 @@ public class CrudappApplication {
 //            createStudent(studentDAO);
 //            createMultipleStudents(studentDAO);
 
-            retriveStudent(studentDAO);
+//            retrieveStudent(studentDAO);
+            retrieveAllStudents(studentDAO);
 
         };
     }
 
-    private void retriveStudent(StudentDAO studentDAO) {
+    private void retrieveAllStudents(StudentDAO studentDAO) {
+        System.out.println("Retrieving all students");
+        studentDAO.getAll().forEach(System.out::println);
+    }
+
+    private void retrieveStudent(StudentDAO studentDAO) {
         System.out.println("Retrieving student");
         Student student = studentDAO.get(1-8);
 
