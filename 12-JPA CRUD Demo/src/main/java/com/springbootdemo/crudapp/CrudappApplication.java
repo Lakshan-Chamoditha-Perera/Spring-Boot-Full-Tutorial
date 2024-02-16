@@ -21,9 +21,14 @@ public class CrudappApplication {
 //            createMultipleStudents(studentDAO);
 
 //            retrieveStudent(studentDAO);
-            retrieveAllStudents(studentDAO);
-
+//            retrieveAllStudents(studentDAO);
+            retrieveStudentsByFirstName(studentDAO);
         };
+    }
+
+    private void retrieveStudentsByFirstName(StudentDAO studentDAO) {
+        System.out.println("Retrieving students by first name");
+        studentDAO.getStudentsByFirstName("John").forEach(System.out::println);
     }
 
     private void retrieveAllStudents(StudentDAO studentDAO) {
