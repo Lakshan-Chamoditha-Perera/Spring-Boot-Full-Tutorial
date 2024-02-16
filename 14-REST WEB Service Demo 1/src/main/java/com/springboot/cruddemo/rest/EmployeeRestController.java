@@ -55,5 +55,15 @@ public class EmployeeRestController {
                         .build());
     }
 
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<StandardResponse> deleteById(@PathVariable int id) {
+        employeeService.deleteById(id);
+        return ResponseEntity.ok(
+                StandardResponse.builder()
+                        .status(200)
+                        .timeStamp(System.currentTimeMillis())
+                        .build());
+    }
+
 }
 
