@@ -34,12 +34,22 @@ public class EmployeeRestController {
                         .build());
     }
 
-    @PostMapping()
+    @PostMapping
     @RequestMapping(value = "/employees",consumes = "application/json")
     public ResponseEntity<StandardResponse> save(@RequestBody Employee employee) {
         return ResponseEntity.ok(
                 StandardResponse.builder()
                         .data(employeeService.save(employee))
+                        .status(200)
+                        .timeStamp(System.currentTimeMillis())
+                        .build());
+    }
+
+    @PutMapping("/employees")
+    public ResponseEntity<StandardResponse> update(@RequestBody Employee employee) {
+        return ResponseEntity.ok(
+                StandardResponse.builder()
+                        .data(employeeService.update(employee))
                         .status(200)
                         .timeStamp(System.currentTimeMillis())
                         .build());
