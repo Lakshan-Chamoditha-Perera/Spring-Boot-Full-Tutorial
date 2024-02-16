@@ -22,8 +22,23 @@ public class CrudappApplication {
 
 //            retrieveStudent(studentDAO);
 //            retrieveAllStudents(studentDAO);
-            retrieveStudentsByFirstName(studentDAO);
+//            retrieveStudentsByFirstName(studentDAO);
+
+            updateStudent(studentDAO);
         };
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        System.out.println("Updating student");
+        Student student = studentDAO.get(1);
+
+        if (student != null) {
+            student.setFirstName("Jane");
+            studentDAO.update(student);
+            System.out.println("Student updated");
+        } else {
+            System.out.println("Student not found !");
+        }
     }
 
     private void retrieveStudentsByFirstName(StudentDAO studentDAO) {

@@ -1,6 +1,7 @@
 package com.springbootdemo.crudapp.dao;
 
 import com.springbootdemo.crudapp.entity.Student;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,4 +13,7 @@ public interface StudentDAO {
     List<Student> getAll();
 
     List<Student> getStudentsByFirstName(String firstName);
+
+    @Transactional
+    void update(Student student);
 }
