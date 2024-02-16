@@ -1,4 +1,4 @@
-package com.springbootdemo.rest.rest;
+package com.springbootdemo.rest.rest.payloads;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
