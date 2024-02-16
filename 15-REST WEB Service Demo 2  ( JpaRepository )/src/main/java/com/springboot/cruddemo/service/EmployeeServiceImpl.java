@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee findById(int id) {
         Optional<Employee> byId = employeeRepository.findById(id);
         if (byId.isPresent()) return byId.get();
-        return null;
+        throw new RuntimeException("Employee not found");
     }
 
     @Override
