@@ -47,11 +47,13 @@ public class SecurityConfig {
         );
         // use HTTP basic authentication
         httpSecurity.httpBasic(Customizer.withDefaults());
-
-        // disable CSRF
-        // in general, it is not required for stateless REST APIs that use POST, PUT, DELETE and/or PATCH methods
+        // disable CSRF. In general, it is not required for stateless REST APIs that use POST, PUT, DELETE and/or PATCH methods
         httpSecurity.csrf(csrf->csrf.disable());
-
         return httpSecurity.build();
     }
 }
+
+
+
+
+
