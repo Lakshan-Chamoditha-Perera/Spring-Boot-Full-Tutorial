@@ -1,5 +1,6 @@
 package com.example.springboot.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,18 +12,40 @@ import java.util.Date;
 public class DemoController {
 
     @GetMapping
-    public String get(Model model){
-        model.addAttribute("theDate",new Date());
-        return "hello"; //html name
+    public String get(Model model) {
+        model.addAttribute("theDate", new Date());
+        return "hello2"; //html name
     }
 
+    //    need a controller to show initial HTML form
     @RequestMapping("/showForm")
-    public String showForm(Model model){
+    public String showForm(Model model) {
         return "my_form"; //html name
     }
 
-    @RequestMapping("/processForm")
-    public String processForm(Model model){
+    //    need a controller method to process the HTML form
+    @RequestMapping("/processFormV1")
+    public String processForm(Model model) {
         return "hello1"; //html name
+    }
+
+    // need a controller method to read form data and
+// add data to the model
+    @RequestMapping("/processFormV2")
+    public String letsShoutDude(HttpServletRequest httpServletRequest, Model model) {
+
+//        read the request parameter from the HTML form
+        String theName = httpServletRequest.getParameter("studentName");
+
+//        convert the data to all uppercase
+        theName = theName.toUpperCase();
+
+//        create thr message
+        String result = "Yo! " + theName;
+
+//        add message to the model
+        model.addAttribute("message", result);
+
+        return "hello3";
     }
 }
