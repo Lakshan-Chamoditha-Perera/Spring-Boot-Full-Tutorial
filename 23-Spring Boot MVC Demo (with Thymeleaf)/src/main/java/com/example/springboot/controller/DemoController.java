@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 
@@ -40,8 +41,22 @@ public class DemoController {
 //        convert the data to all uppercase
         theName = theName.toUpperCase();
 
-//        create thr message
+//        create the message
         String result = "Yo! " + theName;
+
+//        add message to the model
+        model.addAttribute("message", result);
+
+        return "hello3";
+    }
+
+    @RequestMapping("/processFormV3")
+    public String letsShoutDude(@RequestParam("studentName") String theName, Model model) {
+
+        theName = theName.toUpperCase();
+
+//        create the message
+        String result = "Hello My Friend From v3! " + theName;
 
 //        add message to the model
         model.addAttribute("message", result);
