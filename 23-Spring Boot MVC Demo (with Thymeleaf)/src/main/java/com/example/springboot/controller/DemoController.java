@@ -20,4 +20,9 @@ public class DemoController {
     public String showForm(Model model){
         return "my_form"; //html name
     }
+
+    @RequestMapping("/processForm")
+    public String processForm(Model model){
+        return "hello1"; //html name
+    }
 }
