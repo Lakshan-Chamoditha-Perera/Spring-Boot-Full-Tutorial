@@ -44,9 +44,21 @@ public class JpaHibernateDemoApplication {
 
 //            updateCourse(appDAO);
 
-            deleteInstructorWithoutDeletingChilds(appDAO);
+//            deleteInstructorWithoutDeletingChilds(appDAO);
+
+            deleteCourse(appDAO);
         };
 
+
+    }
+
+    private void deleteCourse(AppDAO appDAO) {
+        try {
+            appDAO.deleteCourse(2);
+            System.out.println("Course deleted");
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void deleteInstructorWithoutDeletingChilds(AppDAO appDAO) {
@@ -59,12 +71,12 @@ public class JpaHibernateDemoApplication {
     }
 
     private void updateCourse(AppDAO appDAO) {
-       Optional<Course> byId = appDAO.findCourseById(2);
-         if (byId.isPresent()) {
-              Course course = byId.get();
-              course.setTitle("Java Programming");
-              appDAO.updateCourse(course);
-         }
+        Optional<Course> byId = appDAO.findCourseById(2);
+        if (byId.isPresent()) {
+            Course course = byId.get();
+            course.setTitle("Java Programming");
+            appDAO.updateCourse(course);
+        }
 
     }
 
@@ -97,7 +109,6 @@ public class JpaHibernateDemoApplication {
     private void findCoursesByInstructorId(AppDAO appDAO) {
         appDAO.findCoursesByInstructorId(1).forEach(System.out::println);
     }
-
 
     public void findInstructorWithCourses(AppDAO appDAO) {
         Optional<Instructor> byId = appDAO.findById(1);
@@ -174,4 +185,5 @@ public class JpaHibernateDemoApplication {
             System.out.println(e.getMessage());
         }
     }
+
 }

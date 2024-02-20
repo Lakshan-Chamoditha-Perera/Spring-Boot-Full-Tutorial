@@ -101,4 +101,13 @@ public class AppDAOImpl implements AppDAO {
         byId.get().getCourses().forEach(course -> course.setInstructor(null));
         entityManager.remove(byId.get());
     }
+
+    @Override
+    public void deleteCourse(Integer id) {
+        Optional<Course> byId = findCourseById(id);
+        if (!byId.isPresent()) {
+            throw new RuntimeException("Course not found");
+        }
+        entityManager.remove(byId.get());
+    }
 }

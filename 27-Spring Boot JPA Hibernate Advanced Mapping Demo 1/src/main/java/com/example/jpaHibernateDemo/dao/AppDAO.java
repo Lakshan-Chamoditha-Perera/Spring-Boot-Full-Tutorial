@@ -22,5 +22,6 @@ public interface AppDAO {
     Optional<Course> findCourseById(Integer id);
     void updateCourse(Course course);
     void deleteInstructorWithoutDeletingChilds(Integer id);
+    void deleteCourse(Integer id);
 
 }
