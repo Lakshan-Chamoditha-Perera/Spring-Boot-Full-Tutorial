@@ -19,10 +19,8 @@ public class Course {
     @ToString.Exclude
     private Instructor instructor;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = {
-            CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
-    })
-    private List<Review> reviews ;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
     public void addReview(Review review) {
         if (reviews == null) reviews = new ArrayList<>();

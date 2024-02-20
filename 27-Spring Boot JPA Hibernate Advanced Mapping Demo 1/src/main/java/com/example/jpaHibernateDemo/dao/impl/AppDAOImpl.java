@@ -128,4 +128,14 @@ public class AppDAOImpl implements AppDAO {
         return resultList.isEmpty() ? Optional.empty() : Optional.of(resultList.get(0));
 
     }
+
+    @Transactional
+    @Override
+    public void deleteCourseAndReviews(Integer id) {
+        Optional<Course> byId = findCourseWithReviewsById(id);
+        if (byId.isEmpty()) {
+            throw new RuntimeException("Course not found");
+        }
+        entityManager.remove(byId.get());
+    }
 }
