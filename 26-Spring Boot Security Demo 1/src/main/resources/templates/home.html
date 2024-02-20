@@ -40,15 +40,29 @@
     You are logged in as <strong sec:authentication="principal.username"></strong>
     Role: <strong sec:authentication="principal.authorities"></strong>
 </p>
-<hr>
-<p>
-    <a th:href="@{/manager}">Manager Page</a>(Only For Managers)
-</p>
-<hr>
-<p>
-    <a th:href="@{/system}">Admin Page</a>(Only For Admins)
-</p>
-<hr>
+
+<div sec:authorize="hasRole('EMPLOYEE')">
+    <p>
+        Employee, Manager & Admin can see this.
+    </p>
+    <hr>
+</div>
+
+<div sec:authorize="hasRole('MANAGER')">
+    <p>
+        <a th:href="@{/manager}">Manager Page</a>(Only For Managers)
+    </p>
+    <hr>
+</div>
+
+
+<div sec:authorize="hasRole('ADMIN')" >
+    <p>
+        <a th:href="@{/system}">Admin Page</a>(Only For Admins)
+    </p>
+    <hr>
+</div>
+
 <form action="#" method="post" th:action="@{/logout}">
     <button class="btn-logout" type="submit">Logout</button>
 </form>
