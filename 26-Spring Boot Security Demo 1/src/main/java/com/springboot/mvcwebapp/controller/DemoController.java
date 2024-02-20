@@ -9,5 +9,13 @@ public class DemoController {
     public String showHome() {
         return "home";
     }
-
+    //    add request for /admin
+    @GetMapping("/manager")
+    public String showManager() {
+        return "manager";
+    }
+    @GetMapping("/system")
+    public String showAdmin() {
+        return "admin";
+    }
 }

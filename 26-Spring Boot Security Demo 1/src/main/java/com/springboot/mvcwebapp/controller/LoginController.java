@@ -10,13 +10,9 @@ public class LoginController {
         return "login-page";
     }
 
-//    add request for /admin
-    @GetMapping("/manager")
-    public String showManager() {
-        return "manager";
-    }
-    @GetMapping("/system")
-    public String showAdmin() {
-        return "admin";
+    // add request mapping for /access-denied
+    @GetMapping("/access-denied")
+    public String showAccessDenied() {
+        return "access-denied";
     }
 }
