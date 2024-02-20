@@ -49,10 +49,17 @@ public class JpaHibernateDemoApplication {
 
 //            deleteCourse(appDAO);
 
-            createCourseAndReviews(appDAO);
+//            createCourseAndReviews(appDAO);
+
+            retrieveCourseAndReviews(appDAO);
         };
 
 
+    }
+
+    private void retrieveCourseAndReviews(AppDAO appDAO) {
+        Optional<Course> courseWithReviewsById = appDAO.findCourseWithReviewsById(3);
+        System.out.println(courseWithReviewsById.get());
     }
 
     private void createCourseAndReviews(AppDAO appDAO) {

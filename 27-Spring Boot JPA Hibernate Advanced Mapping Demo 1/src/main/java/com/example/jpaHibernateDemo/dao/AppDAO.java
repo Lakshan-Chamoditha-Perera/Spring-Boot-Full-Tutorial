@@ -23,7 +23,7 @@ public interface AppDAO {
     void updateCourse(Course course);
     void deleteInstructorWithoutDeletingChilds(Integer id);
     void deleteCourse(Integer id);
-
     void save(Course course);
+    Optional<Course> findCourseWithReviewsById(Integer id);
 
 }
