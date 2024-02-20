@@ -42,9 +42,20 @@ public class JpaHibernateDemoApplication {
 
 //            updateInstructor(appDAO);
 
-            updateCourse(appDAO);
+//            updateCourse(appDAO);
+
+            deleteInstructorWithoutDeletingChilds(appDAO);
         };
 
+    }
+
+    private void deleteInstructorWithoutDeletingChilds(AppDAO appDAO) {
+        try {
+            appDAO.deleteInstructorWithoutDeletingChilds(1);
+            System.out.println("Instructor deleted");
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void updateCourse(AppDAO appDAO) {

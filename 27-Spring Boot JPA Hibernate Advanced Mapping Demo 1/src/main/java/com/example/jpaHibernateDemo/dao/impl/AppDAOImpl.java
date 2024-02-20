@@ -18,20 +18,20 @@ import java.util.Optional;
 public class AppDAOImpl implements AppDAO {
     private final EntityManager entityManager;
 
-    @Override
     @Transactional
+    @Override
     public void save(Instructor instructor) {
         entityManager.persist(instructor);
     }
 
-    @Override
     @Transactional
+    @Override
     public Optional<Instructor> findById(Integer id) {
         return Optional.ofNullable(entityManager.find(Instructor.class, id));
     }
 
-    @Override
     @Transactional
+    @Override
     public void deleteById(Integer id) {
         Optional<Instructor> byId = findById(id);
         if (!byId.isPresent()) {
@@ -45,8 +45,8 @@ public class AppDAOImpl implements AppDAO {
         return Optional.ofNullable(entityManager.find(InstructorDetail.class, id));
     }
 
-    @Override
     @Transactional
+    @Override
     public void deleteInstructorDetailById(Integer id) {
         Optional<InstructorDetail> byId = findInstructorDetailById(id);
         if (!byId.isPresent()) {
@@ -74,8 +74,8 @@ public class AppDAOImpl implements AppDAO {
         return entityManager.createQuery("SELECT i FROM Instructor i " + "JOIN FETCH i.courses " + "WHERE i.id = :id", Instructor.class).setParameter("id", id).getSingleResult();
     }
 
-    @Override
     @Transactional
+    @Override
     public void updateInstructor(Instructor instructor) {
         entityManager.merge(instructor);
     }
@@ -83,13 +83,22 @@ public class AppDAOImpl implements AppDAO {
     @Override
     public Optional<Course> findCourseById(Integer id) {
         return Optional.ofNullable(entityManager.find(Course.class, id));
-
-
     }
 
-    @Override
     @Transactional
+    @Override
     public void updateCourse(Course course) {
         entityManager.merge(course);
+    }
+
+    @Transactional
+    @Override
+    public void deleteInstructorWithoutDeletingChilds(Integer id) {
+        Optional<Instructor> byId = findById(id);
+        if (!byId.isPresent()) {
+            throw new RuntimeException("Instructor not found");
+        }
+        byId.get().getCourses().forEach(course -> course.setInstructor(null));
+        entityManager.remove(byId.get());
     }
 }
