@@ -1,10 +1,7 @@
 package com.example.jpaHibernateDemo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Entity
@@ -18,7 +15,8 @@ public class InstructorDetail {
     private String youtube_channel;
     private String hobby;
 
-//    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
-//    private Instructor instructor;
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Instructor instructor;
 }
 

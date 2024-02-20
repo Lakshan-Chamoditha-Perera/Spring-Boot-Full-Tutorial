@@ -25,8 +25,14 @@ public class JpaHibernateDemoApplication {
 //            findInstructor(appDAO);
 //            deleteInstructor(appDAO);
 
+//            getInstructorDetail byId(appDAO);
         };
 
+    }
+
+    private void getInstructorDetailbyId(AppDAO appDAO) {
+        Optional<InstructorDetail> byId = appDAO.findInstructorDetailById(1);
+        System.out.println(byId.isPresent() ? byId.get() : "Instructor Detail not found !");
     }
 
     private void findInstructor(AppDAO appDAO) {

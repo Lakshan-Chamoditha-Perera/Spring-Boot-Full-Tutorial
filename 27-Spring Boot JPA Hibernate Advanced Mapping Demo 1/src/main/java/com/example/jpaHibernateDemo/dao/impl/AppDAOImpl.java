@@ -2,6 +2,7 @@ package com.example.jpaHibernateDemo.dao.impl;
 
 import com.example.jpaHibernateDemo.dao.AppDAO;
 import com.example.jpaHibernateDemo.entity.Instructor;
+import com.example.jpaHibernateDemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AppDAOImpl implements AppDAO {
     private final EntityManager entityManager;
-
-
 
     @Override
     @Transactional
@@ -36,5 +35,12 @@ public class AppDAOImpl implements AppDAO {
             throw new RuntimeException("Instructor not found");
         }
         entityManager.remove(byId.get());
+    }
+
+    @Override
+    public Optional<InstructorDetail> findInstructorDetailById(Integer id) {
+        return Optional.ofNullable(
+                entityManager.find(InstructorDetail.class, id)
+        );
     }
 }
