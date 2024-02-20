@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Spring MVC Security Home Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/styles.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            margin: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .btn-logout {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 75px;
+            transition: background-color 0.3s ease;
+            font-size: 10px;
+        }
+    </style>
 </head>
 <body>
 <h2 class="title">
@@ -14,5 +35,22 @@
 <hr>
 <p>
     This is the home page of the Spring MVC Security application.
+</p>
+<p>
+    You are logged in as <strong sec:authentication="principal.username"></strong>
+    Role: <strong sec:authentication="principal.authorities"></strong>
+</p>
+<hr>
+<p>
+    <a th:href="@{/manager}">Manager Page</a>(Only For Managers)
+</p>
+<hr>
+<p>
+    <a th:href="@{/system}">Admin Page</a>(Only For Admins)
+</p>
+<hr>
+<form action="#" method="post" th:action="@{/logout}">
+    <button class="btn-logout" type="submit">Logout</button>
+</form>
 </body>
 </html>
