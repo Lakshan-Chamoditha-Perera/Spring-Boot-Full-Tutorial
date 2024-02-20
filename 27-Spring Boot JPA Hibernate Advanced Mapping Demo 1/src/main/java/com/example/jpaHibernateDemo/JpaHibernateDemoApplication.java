@@ -1,6 +1,7 @@
 package com.example.jpaHibernateDemo;
 
 import com.example.jpaHibernateDemo.dao.AppDAO;
+import com.example.jpaHibernateDemo.entity.Course;
 import com.example.jpaHibernateDemo.entity.Instructor;
 import com.example.jpaHibernateDemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -26,18 +27,46 @@ public class JpaHibernateDemoApplication {
 //            deleteInstructor(appDAO);
 
 //            getInstructorDetail byId(appDAO);
-            deleteInstructorDetail(appDAO);
+//            deleteInstructorDetail(appDAO);
+
+            createInstructorWithCourses(appDAO);
+
         };
 
 
     }
 
+    private void createInstructorWithCourses(AppDAO appDAO) {
+        Instructor instructor = new Instructor();
+
+        instructor.setFirstName("John");
+        instructor.setLastName("Doe");
+        instructor.setEmail("doe@gmail.com");
+
+        InstructorDetail instructorDetail = new InstructorDetail();
+        instructorDetail.setHobby("Coding");
+        instructorDetail.setYoutube_channel("youtube.com");
+
+        instructor.setInstructorDetail(instructorDetail);
+
+        Course course1 = new Course();
+        course1.setTitle("Java");
+
+        instructor.addCourse(course1);
+
+        Course course2 = new Course();
+        course2.setTitle("Python");
+
+        instructor.addCourse(course2);
+//
+        appDAO.save(instructor);
+    }
+
     private void deleteInstructorDetail(AppDAO appDAO) {
-        try{
-            appDAO.deleteInstructorDetailById(2);
+        try {
+            appDAO.deleteInstructorDetailById(3);
             System.out.println("Instructor Detail deleted");
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -70,11 +99,10 @@ public class JpaHibernateDemoApplication {
     }
 
     private void deleteInstructor(AppDAO appDAO) {
-        try{
+        try {
             appDAO.deleteById(1);
             System.out.println("Instructor deleted");
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
     }

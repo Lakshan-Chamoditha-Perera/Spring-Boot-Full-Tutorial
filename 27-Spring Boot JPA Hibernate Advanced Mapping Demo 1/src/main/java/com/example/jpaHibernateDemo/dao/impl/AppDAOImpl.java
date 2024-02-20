@@ -50,7 +50,6 @@ public class AppDAOImpl implements AppDAO {
     public void deleteInstructorDetailById(Integer id) {
         Optional<InstructorDetail> byId = findInstructorDetailById(id);
         if(!byId.isPresent()){
-
             throw new RuntimeException("Instructor Detail not found");
         }
         byId.get().getInstructor().setInstructorDetail(null);
