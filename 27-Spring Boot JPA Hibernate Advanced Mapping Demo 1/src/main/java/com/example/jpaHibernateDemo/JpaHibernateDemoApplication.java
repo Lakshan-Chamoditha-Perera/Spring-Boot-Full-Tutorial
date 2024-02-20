@@ -26,8 +26,20 @@ public class JpaHibernateDemoApplication {
 //            deleteInstructor(appDAO);
 
 //            getInstructorDetail byId(appDAO);
+            deleteInstructorDetail(appDAO);
         };
 
+
+    }
+
+    private void deleteInstructorDetail(AppDAO appDAO) {
+        try{
+            appDAO.deleteInstructorDetailById(2);
+            System.out.println("Instructor Detail deleted");
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void getInstructorDetailbyId(AppDAO appDAO) {
@@ -59,7 +71,7 @@ public class JpaHibernateDemoApplication {
 
     private void deleteInstructor(AppDAO appDAO) {
         try{
-            appDAO.deleteById(8);
+            appDAO.deleteById(1);
             System.out.println("Instructor deleted");
         }
         catch (RuntimeException e){

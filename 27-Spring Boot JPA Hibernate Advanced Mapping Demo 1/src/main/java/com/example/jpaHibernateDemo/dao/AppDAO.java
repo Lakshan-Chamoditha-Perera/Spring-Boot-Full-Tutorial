@@ -12,4 +12,5 @@ public interface AppDAO {
     Optional<Instructor> findById(Integer id);
     void deleteById(Integer id);
     Optional<InstructorDetail>findInstructorDetailById(Integer id);
+    void deleteInstructorDetailById(Integer id);
 }

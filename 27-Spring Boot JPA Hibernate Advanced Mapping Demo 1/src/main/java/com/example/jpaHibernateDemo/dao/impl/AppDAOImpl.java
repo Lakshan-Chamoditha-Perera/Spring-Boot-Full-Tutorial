@@ -29,6 +29,7 @@ public class AppDAOImpl implements AppDAO {
     }
 
     @Override
+    @Transactional
     public void deleteById(Integer id) {
         Optional<Instructor> byId = findById(id);
         if(!byId.isPresent()){
@@ -42,5 +43,17 @@ public class AppDAOImpl implements AppDAO {
         return Optional.ofNullable(
                 entityManager.find(InstructorDetail.class, id)
         );
+    }
+
+    @Override
+    @Transactional
+    public void deleteInstructorDetailById(Integer id) {
+        Optional<InstructorDetail> byId = findInstructorDetailById(id);
+        if(!byId.isPresent()){
+
+            throw new RuntimeException("Instructor Detail not found");
+        }
+        byId.get().getInstructor().setInstructorDetail(null);
+        entityManager.remove(byId.get());
     }
 }
