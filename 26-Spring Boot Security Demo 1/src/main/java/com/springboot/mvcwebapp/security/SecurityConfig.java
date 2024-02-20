@@ -1,0 +1,40 @@
+package com.springboot.mvcwebapp.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+@Configuration
+public class SecurityConfig {
+    @Bean
+    public InMemoryUserDetailsManager userDetailsManager() {
+
+        InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
+
+        UserDetails john = User.builder()
+                .username("user")
+                .password("{noop}1234")
+                .roles("EMPLOYEE").build();
+
+        UserDetails mary = User.builder()
+                .username("mary")
+                .password("{noop}1234")
+                .roles("EMPLOYEE","MANAGER").build();
+
+        UserDetails susan = User.builder()
+                .username("susan")
+                .password("{noop}1234")
+                .roles("ADMIN","MANAGER","EMPLOYEE").build();
+
+        inMemoryUserDetailsManager.createUser(john);
+        inMemoryUserDetailsManager.createUser(mary);
+        inMemoryUserDetailsManager.createUser(susan);
+
+        return inMemoryUserDetailsManager;
+
+    }
+
+
+}
