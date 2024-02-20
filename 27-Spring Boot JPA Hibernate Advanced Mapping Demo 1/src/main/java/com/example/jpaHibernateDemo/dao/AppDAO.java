@@ -24,4 +24,6 @@ public interface AppDAO {
     void deleteInstructorWithoutDeletingChilds(Integer id);
     void deleteCourse(Integer id);
 
+    void save(Course course);
+
 }

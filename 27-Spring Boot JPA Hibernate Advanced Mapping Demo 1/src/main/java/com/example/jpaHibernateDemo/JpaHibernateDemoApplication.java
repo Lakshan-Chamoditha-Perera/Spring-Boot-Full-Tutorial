@@ -4,6 +4,7 @@ import com.example.jpaHibernateDemo.dao.AppDAO;
 import com.example.jpaHibernateDemo.entity.Course;
 import com.example.jpaHibernateDemo.entity.Instructor;
 import com.example.jpaHibernateDemo.entity.InstructorDetail;
+import com.example.jpaHibernateDemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -46,10 +47,28 @@ public class JpaHibernateDemoApplication {
 
 //            deleteInstructorWithoutDeletingChilds(appDAO);
 
-            deleteCourse(appDAO);
+//            deleteCourse(appDAO);
+
+            createCourseAndReviews(appDAO);
         };
 
 
+    }
+
+    private void createCourseAndReviews(AppDAO appDAO) {
+        Course course = new Course();
+        course.setTitle("Java Programming");
+
+        Review review1 = new Review();
+        review1.setComment("Great course");
+
+        Review review2 = new Review();
+        review2.setComment("Awesome course");
+
+        course.addReview(review1);
+        course.addReview(review2);
+
+        appDAO.save(course);
     }
 
     private void deleteCourse(AppDAO appDAO) {
