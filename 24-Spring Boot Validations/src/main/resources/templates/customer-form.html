@@ -18,14 +18,45 @@
 
 <form method="post" th:action="@{/processForm}" th:object="${customer}">
     First name : <input name="firstName" type="text"/> <br><br>
-    Last name : <input name="lastName" type="text"/> <br><br>
-    <!--  Add error message -->
+    Last name : <input name="lastName" type="text"/>
+    <!--  Add error message to invalid last name-->
     <span
             class="error"
             th:errors="*{lastName}"
             th:if="${#fields.hasErrors('lastName')}">
         Error message
+    </span><br><br>
+
+    Free passes : <input name="freePasses" type="text"/>
+    <!--  Add error message to invalid passes-->
+    <span
+            class="error"
+            th:errors="*{freePasses}"
+            th:if="${#fields.hasErrors('freePasses')}">
+        Error message
     </span>
+    <br><br>
+
+    Postal Code : <input name="postalCode" type="text"/>
+    <!--  Add error message to invalid postal code-->
+    <span
+            class="error"
+            th:errors="*{postalCode}"
+            th:if="${#fields.hasErrors('postalCode')}">
+        Error message
+    </span>
+    <br><br>
+
+    Course Code : <input name="courseCode" type="text"/>
+    <!--  Add error message to invalid postal code-->
+    <span
+            class="error"
+            th:errors="*{courseCode}"
+            th:if="${#fields.hasErrors('courseCode')}">
+        Error message
+    </span>
+
+
     <br><br>
     <input
             type="submit" value="Submit"
