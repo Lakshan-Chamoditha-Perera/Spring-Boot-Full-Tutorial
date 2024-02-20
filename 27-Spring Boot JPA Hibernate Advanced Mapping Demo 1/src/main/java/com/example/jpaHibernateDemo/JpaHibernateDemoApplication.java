@@ -40,9 +40,20 @@ public class JpaHibernateDemoApplication {
 
 //            findInstructorWithCoursesJoinFetch(appDAO); //JOIN FETCH
 
-            updateInstructor(appDAO);
+//            updateInstructor(appDAO);
 
+            updateCourse(appDAO);
         };
+
+    }
+
+    private void updateCourse(AppDAO appDAO) {
+       Optional<Course> byId = appDAO.findCourseById(2);
+         if (byId.isPresent()) {
+              Course course = byId.get();
+              course.setTitle("Java Programming");
+              appDAO.updateCourse(course);
+         }
 
     }
 
@@ -53,7 +64,7 @@ public class JpaHibernateDemoApplication {
             instructor.setFirstName("Shan");
             instructor.setLastName("Perera");
             instructor.setEmail("user@gmail.com");
-            appDAO.update(instructor);
+            appDAO.updateInstructor(instructor);
         }
 
     }

@@ -27,16 +27,14 @@ public class AppDAOImpl implements AppDAO {
     @Override
     @Transactional
     public Optional<Instructor> findById(Integer id) {
-        return Optional.ofNullable(
-                entityManager.find(Instructor.class, id)
-        );
+        return Optional.ofNullable(entityManager.find(Instructor.class, id));
     }
 
     @Override
     @Transactional
     public void deleteById(Integer id) {
         Optional<Instructor> byId = findById(id);
-        if(!byId.isPresent()){
+        if (!byId.isPresent()) {
             throw new RuntimeException("Instructor not found");
         }
         entityManager.remove(byId.get());
@@ -44,16 +42,14 @@ public class AppDAOImpl implements AppDAO {
 
     @Override
     public Optional<InstructorDetail> findInstructorDetailById(Integer id) {
-        return Optional.ofNullable(
-                entityManager.find(InstructorDetail.class, id)
-        );
+        return Optional.ofNullable(entityManager.find(InstructorDetail.class, id));
     }
 
     @Override
     @Transactional
     public void deleteInstructorDetailById(Integer id) {
         Optional<InstructorDetail> byId = findInstructorDetailById(id);
-        if(!byId.isPresent()){
+        if (!byId.isPresent()) {
             throw new RuntimeException("Instructor Detail not found");
         }
         byId.get().getInstructor().setInstructorDetail(null);
@@ -62,9 +58,7 @@ public class AppDAOImpl implements AppDAO {
 
     @Override
     public List<Course> findCoursesByInstructorId(Integer id) {
-        TypedQuery <Course> query = entityManager.createQuery(
-                "select c from Course c where c.instructor.id = :id", Course.class
-        );
+        TypedQuery<Course> query = entityManager.createQuery("select c from Course c where c.instructor.id = :id", Course.class);
         query.setParameter("id", id);
         return query.getResultList();
 
@@ -72,23 +66,30 @@ public class AppDAOImpl implements AppDAO {
 
     @Override
     public Optional<Instructor> findInstructor(Integer id) {
-        return Optional.ofNullable(
-                entityManager.find(Instructor.class, id)
-        );
+        return Optional.ofNullable(entityManager.find(Instructor.class, id));
     }
 
     @Override
     public Instructor findInstructorByIdJoinFetch(Integer id) {
-        return entityManager.createQuery(
-                "SELECT i FROM Instructor i " +
-                        "JOIN FETCH i.courses " +
-                        "WHERE i.id = :id", Instructor.class
-        ).setParameter("id", id).getSingleResult();
+        return entityManager.createQuery("SELECT i FROM Instructor i " + "JOIN FETCH i.courses " + "WHERE i.id = :id", Instructor.class).setParameter("id", id).getSingleResult();
     }
 
     @Override
     @Transactional
-    public void update(Instructor instructor) {
+    public void updateInstructor(Instructor instructor) {
         entityManager.merge(instructor);
+    }
+
+    @Override
+    public Optional<Course> findCourseById(Integer id) {
+        return Optional.ofNullable(entityManager.find(Course.class, id));
+
+
+    }
+
+    @Override
+    @Transactional
+    public void updateCourse(Course course) {
+        entityManager.merge(course);
     }
 }
