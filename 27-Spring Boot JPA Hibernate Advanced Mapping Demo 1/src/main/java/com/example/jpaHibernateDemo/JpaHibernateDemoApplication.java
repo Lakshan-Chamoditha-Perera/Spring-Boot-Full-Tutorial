@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,8 +38,24 @@ public class JpaHibernateDemoApplication {
 
 //            findCoursesForInstructor(appDAO);
 
-            findInstructorWithCoursesJoinFetch(appDAO);
+//            findInstructorWithCoursesJoinFetch(appDAO); //JOIN FETCH
+
+            updateInstructor(appDAO);
+
         };
+
+    }
+
+    private void updateInstructor(AppDAO appDAO) {
+        Optional<Instructor> byId = appDAO.findById(1);
+        if (byId.isPresent()) {
+            Instructor instructor = byId.get();
+            instructor.setFirstName("Shan");
+            instructor.setLastName("Perera");
+            instructor.setEmail("user@gmail.com");
+            appDAO.update(instructor);
+        }
+
     }
 
     private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
@@ -50,7 +65,7 @@ public class JpaHibernateDemoApplication {
 
     private void findCoursesForInstructor(AppDAO appDAO) {
         Optional<Instructor> instructor = appDAO.findInstructor(1);
-        if (instructor.isPresent()){
+        if (instructor.isPresent()) {
             List<Course> coursesByInstructorId = appDAO.findCoursesByInstructorId(1);
             instructor.get().setCourses(coursesByInstructorId);
             System.out.println(instructor);
@@ -64,7 +79,7 @@ public class JpaHibernateDemoApplication {
 
     public void findInstructorWithCourses(AppDAO appDAO) {
         Optional<Instructor> byId = appDAO.findById(1);
-        System.out.println( byId.get());
+        System.out.println(byId.get());
     }
 
     private void createInstructorWithCourses(AppDAO appDAO) {
