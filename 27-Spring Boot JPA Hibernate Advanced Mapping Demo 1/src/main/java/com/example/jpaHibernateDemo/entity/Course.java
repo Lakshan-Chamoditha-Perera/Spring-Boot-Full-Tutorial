@@ -15,7 +15,7 @@ public class Course {
     private Integer id;
     private String title;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch=FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @ToString.Exclude
     private Instructor instructor;
 
@@ -25,5 +25,14 @@ public class Course {
     public void addReview(Review review) {
         if (reviews == null) reviews = new ArrayList<>();
         reviews.add(review);
+    }
+
+    @ManyToMany(fetch=FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ToString.Exclude
+    List<Student>students;
+
+    public void addStudent(Student student){
+        if (students == null) students = new ArrayList<>();
+        students.add(student);
     }
 }
