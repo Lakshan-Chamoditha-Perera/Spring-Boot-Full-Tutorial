@@ -2,14 +2,32 @@ package com.springboot.aopdemo.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class MyDemoAspect {
-    @Before("execution(void add*(com.springboot.aopdemo.entity.Account))")
+
+    @Pointcut("execution(void add*(com.springboot.aopdemo.entity.Account))")
+    private void forAddMethdsWithAccountParam() {
+    }
+
+
+    @Before("forAddMethdsWithAccountParam()")
     public void beforeAddAccountAdvice() {
-        System.out.println("\n=====>>> Executing @Before advice on addAccount()");
+        System.out.println("\n=====>>> beforeAddAccountAdvice Executing @Before advice on addAccount()");
+    }
+
+    @Before("forAddMethdsWithAccountParam()")
+    public void performCloseConnections() {
+        System.out.println("\n=====>>> performCloseConnections: Executing @Before advice on addAccount()");
+    }
+
+    //-----------------------------------------------------------------------------------
+    @Before("execution(void api*())")
+    public void beforeAPIAnalytics() {
+        System.out.println("\n=====>>> Executing @Before advice on apiTest()");
     }
 }
 
