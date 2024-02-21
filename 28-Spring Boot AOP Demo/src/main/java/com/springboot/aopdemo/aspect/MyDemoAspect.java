@@ -1,5 +1,6 @@
 package com.springboot.aopdemo.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -54,8 +55,11 @@ public class MyDemoAspect {
     }
 
     //----------------------------------------------------------------------------------------------------
-    @Before("execution(void ap8*())")
-    public void beforeAPIAnalytics() {
+    @Before("execution(void api*())")
+    public void beforeAPIAnalytics(JoinPoint joinPoint) {
+        // display the method signature
+        System.out.print(joinPoint.getSignature());
+
         System.out.println("\n=====>>> Executing @Before advice on apiTest()");
     }
 }

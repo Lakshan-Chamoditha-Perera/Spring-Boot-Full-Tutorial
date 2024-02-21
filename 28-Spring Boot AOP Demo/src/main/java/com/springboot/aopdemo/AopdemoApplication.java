@@ -22,7 +22,7 @@ public class AopdemoApplication {
 
 //			demoTheBeforeAdvice(accountDAO,membershipDAO);
 //            demoTheAfterReturningAdvice(accountDAO);
-//            accountDAO.apiTest();
+            accountDAO.apiTest();
 //
 //            accountDAO.setServiceCode("silver");
 //            accountDAO.setName("lakshan");
@@ -30,8 +30,7 @@ public class AopdemoApplication {
 //            String name = accountDAO.getName();
 //            String serviceCode = accountDAO.getServiceCode();
 
-            DemoAPI demoAPI = new DemoAPI();
-            demoAPI.apiTest();
+
 
         };
     }
