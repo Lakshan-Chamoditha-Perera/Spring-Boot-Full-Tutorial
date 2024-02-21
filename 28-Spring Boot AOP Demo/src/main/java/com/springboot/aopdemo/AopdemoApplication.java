@@ -20,14 +20,14 @@ public class AopdemoApplication {
         return runner -> {
 
 //			demoTheBeforeAdvice(accountDAO,membershipDAO);
-            demoTheAfterReturningAdvice(accountDAO);
+//            demoTheAfterReturningAdvice(accountDAO);
 //            accountDAO.apiTest();
 //
 //            accountDAO.setServiceCode("silver");
 //            accountDAO.setName("lakshan");
 //
-//            String name = accountDAO.getName();
-//            String serviceCode = accountDAO.getServiceCode();
+            String name = accountDAO.getName();
+            String serviceCode = accountDAO.getServiceCode();
 
 
         };
