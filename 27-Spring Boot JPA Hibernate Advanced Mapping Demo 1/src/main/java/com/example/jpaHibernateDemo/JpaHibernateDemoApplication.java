@@ -53,11 +53,17 @@ public class JpaHibernateDemoApplication {
 
 //            retrieveCourseAndReviews(appDAO);
 
-            deleteCourseAndReviews(appDAO);
+//            deleteCourseAndReviews(appDAO);
+
+
+            createCourseAndStudents(appDAO);
 
         };
 
 
+    }
+
+    private void createCourseAndStudents(AppDAO appDAO) {
     }
 
     private void deleteCourseAndReviews(AppDAO appDAO) {
