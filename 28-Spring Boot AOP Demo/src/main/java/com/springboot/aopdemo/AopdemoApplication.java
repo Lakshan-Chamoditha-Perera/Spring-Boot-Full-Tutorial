@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class AopdemoApplication {
 
@@ -35,7 +37,9 @@ public class AopdemoApplication {
 
     private void demo2TheAfterReturningAdvice(AccountDAO accountDAO) {
         System.out.println("Main Program: AfterReturningDemoApp - demo2TheAfterReturningAdvice: STARTING...");
-        accountDAO.findAccounts();
+        List<Account> accounts = accountDAO.findAccounts();
+        //after editing the data
+        System.out.println("Main Program: AfterReturningDemoApp - demo2TheAfterReturningAdvice: " + accounts);
         System.out.println("Main Program: AfterReturningDemoApp - demo2TheAfterReturningAdvice: ENDING...");
     }
 

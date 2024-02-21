@@ -1,5 +1,6 @@
 package com.springboot.aopdemo.aspect;
 
+import com.springboot.aopdemo.entity.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -70,18 +71,17 @@ public class MyDemoAspect {
     //    @AfterReturning
 
     //    point cut for all findAccounts methods of any return type in impl package
-    @AfterReturning(
-            pointcut = "execution(* com.springboot.aopdemo.dao.impl.*.findAccounts(..))",
+    @AfterReturning(pointcut = "execution(* com.springboot.aopdemo.dao.impl.*.findAccounts(..))",
             returning = "result")
-    public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List result) {
+    public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
         // display the method signature
         System.out.print(joinPoint.getSignature());
 
         System.out.println("\n=====>>> Executing @AfterReturning advice on findAccounts()");
 
-        // print out the results of the method call
+        //this can edit the data before it is returned to the main program
         System.out.print("=====>>> result is: ");
-        result.forEach(System.out::println);
+        result.forEach(account -> account.setLevel(account.getLevel().toUpperCase())); //editing the data
         System.out.println("end of the " + joinPoint.getSignature());
     }
 }
