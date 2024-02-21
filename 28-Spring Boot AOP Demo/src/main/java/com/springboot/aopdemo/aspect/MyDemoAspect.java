@@ -11,7 +11,7 @@ public class MyDemoAspect {
 
     //----------------------------------------------------------------------------------------------------
     //create pointcut include package .. exclude getter/setter
-    @Pointcut("(forDaoPackages()&&!(forGetMethods()||forSetMethods()))")
+    @Pointcut("(!(forGetMethods()||forSetMethods()))")
     private void forDaoPackage() {
     }
 
@@ -54,7 +54,7 @@ public class MyDemoAspect {
     }
 
     //----------------------------------------------------------------------------------------------------
-    @Before("execution(void api*())")
+    @Before("execution(void ap8*())")
     public void beforeAPIAnalytics() {
         System.out.println("\n=====>>> Executing @Before advice on apiTest()");
     }

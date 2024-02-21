@@ -1,5 +1,6 @@
 package com.springboot.aopdemo;
 
+import com.springboot.aopdemo.api.DemoAPI;
 import com.springboot.aopdemo.dao.AccountDAO;
 import com.springboot.aopdemo.dao.MembershipDAO;
 import com.springboot.aopdemo.entity.Account;
@@ -26,9 +27,11 @@ public class AopdemoApplication {
 //            accountDAO.setServiceCode("silver");
 //            accountDAO.setName("lakshan");
 //
-            String name = accountDAO.getName();
-            String serviceCode = accountDAO.getServiceCode();
+//            String name = accountDAO.getName();
+//            String serviceCode = accountDAO.getServiceCode();
 
+            DemoAPI demoAPI = new DemoAPI();
+            demoAPI.apiTest();
 
         };
     }
