@@ -1,10 +1,13 @@
 package com.springboot.aopdemo.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Aspect
 @Component
@@ -61,6 +64,25 @@ public class MyDemoAspect {
         System.out.print(joinPoint.getSignature());
 
         System.out.println("\n=====>>> Executing @Before advice on apiTest()");
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    //    @AfterReturning
+
+    //    point cut for all findAccounts methods of any return type in impl package
+    @AfterReturning(
+            pointcut = "execution(* com.springboot.aopdemo.dao.impl.*.findAccounts(..))",
+            returning = "result")
+    public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List result) {
+        // display the method signature
+        System.out.print(joinPoint.getSignature());
+
+        System.out.println("\n=====>>> Executing @AfterReturning advice on findAccounts()");
+
+        // print out the results of the method call
+        System.out.print("=====>>> result is: ");
+        result.forEach(System.out::println);
+        System.out.println("end of the " + joinPoint.getSignature());
     }
 }
 

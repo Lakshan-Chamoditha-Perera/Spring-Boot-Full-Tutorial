@@ -1,6 +1,5 @@
 package com.springboot.aopdemo;
 
-import com.springboot.aopdemo.api.DemoAPI;
 import com.springboot.aopdemo.dao.AccountDAO;
 import com.springboot.aopdemo.dao.MembershipDAO;
 import com.springboot.aopdemo.entity.Account;
@@ -20,19 +19,24 @@ public class AopdemoApplication {
     public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO) {
         return runner -> {
 
-//			demoTheBeforeAdvice(accountDAO,membershipDAO);
+//			  demoTheBeforeAdvice(accountDAO,membershipDAO);
 //            demoTheAfterReturningAdvice(accountDAO);
-            accountDAO.apiTest();
-//
+//            accountDAO.apiTest();
+
 //            accountDAO.setServiceCode("silver");
 //            accountDAO.setName("lakshan");
-//
+
 //            String name = accountDAO.getName();
 //            String serviceCode = accountDAO.getServiceCode();
 
-
-
+            demo2TheAfterReturningAdvice(accountDAO);
         };
+    }
+
+    private void demo2TheAfterReturningAdvice(AccountDAO accountDAO) {
+        System.out.println("Main Program: AfterReturningDemoApp - demo2TheAfterReturningAdvice: STARTING...");
+        accountDAO.findAccounts();
+        System.out.println("Main Program: AfterReturningDemoApp - demo2TheAfterReturningAdvice: ENDING...");
     }
 
     private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
